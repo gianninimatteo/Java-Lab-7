@@ -114,4 +114,10 @@ public abstract class AbstractBankAccount implements BankAccount {
         this.withdraw(id, amount + AbstractBankAccount.ATM_TRANSACTION_FEE);
     }
 
+    // 2 METODI ASTRATTI
+    // Un metodo abstract non ha mai il corpo { }: dichiara soltanto la firma.
+
+    protected abstract boolean isWithDrawAllowed(double amount); //restituisce true se è possibile prelevare l'importo passato come parametro.
+
+    protected abstract double computeFee(); //restituisce l'importo attuale delle spese di gestione
 }
