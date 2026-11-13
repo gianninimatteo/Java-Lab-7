@@ -1,17 +1,16 @@
 # Design with abstract classes
 
-Create from scratch an `abstract class AbstractBankAccount implements BankAccount`:
+Creare da zero una `abstract class AbstractBankAccount implements BankAccount`:
 
-* It must contain all the elements common to all the implementations of `BankAccount`
-* All fields **must** be `private`
-* The class must expose as `public` all the `BankAccount`'s methods, and only those
-* The class must define a `protected abstract` method `boolean isWithDrawAllowed(double)`, which returns `true` if it's possible to draw from the bank account the amount passed as parameter.
-* The class must define a `protected abstract` method `double computeFee()`, which returns the current amount of the management fees (does not modify the state of `AbstractBankAccount`).
+- Deve contenere tutti gli elementi comuni a tutte le implementazioni di 'BankAccount'.
+- Tutti i campi devono essere private.
+- La classe deve esporre come public tutti i metodi di 'BankAccount', e soltanto quelli.
+- La classe deve definire un metodo protected abstract chiamato 'boolean isWithDrawAllowed(double)', che restituisce true se è possibile prelevare dal conto bancario l'importo passato come parametro.
+- La classe deve definire un metodo protected abstract chiamato 'double computeFee()', che restituisce l'importo attuale delle spese di gestione (senza modificare lo stato di 'AbstractBankAccount').
+Creare da zero una classe 'ClassicBankAccount extends AbstractBankAccount', con lo stesso comportamento di 'SimpleBankAccount'.
 
-Create from scratch a class `ClassicBankAccount extends AbstractBankAccount`, with the same behavior of `SimpleBankAccount`.
+Creare da zero una classe 'RestrictedBankAccount extends AbstractBankAccount', con lo stesso comportamento di 'StrictBankAccount'.
 
-Create from scratch a class `RestrictedBankAccount extends AbstractBankAccount`, with the same behavior of `StrictBankAccount`.
+Rispondere alla seguente domanda:
 
-Answer the following question:
-
-Is this design in your opinion better or worse than the previous one? Why?
+Secondo te, questo design è migliore o peggiore rispetto a quello precedente? Perché?
