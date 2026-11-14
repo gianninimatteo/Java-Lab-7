@@ -23,9 +23,16 @@ public abstract class AbstractBankAccount implements BankAccount {
     public void chargeManagementFees(final int id) { 
         /*
          * Riduce il bilancio del conto di un ammontare pari alle spese di gestione
-         */
-        if (checkUser(id)) {
-            this.balance -= AbstractBankAccount.MANAGEMENT_FEE;
+         */ 
+
+        /* 
+         * Richiamo il metodo dentro al metodo.
+         * Esegue computeFee() e quindi calcola la commissione.
+         * Poi passa il valore della commissione al metodo isWithdrawAllowed() che controlla se il saldo è sufficiente.
+         * Se è true l'utente è corretto e il saldo è sufficiente per prelevare le commissioni, altrimenti false e non succede nulla.
+        */
+        if (checkUser(id) && isWithdrawAllowed(computeFee())) {  
+            this.balance -= computeFee();
             resetTransactions();
         }
     }
@@ -98,7 +105,15 @@ public abstract class AbstractBankAccount implements BankAccount {
          * conto. Note: - Il conto puo' andare in rosso (ammontare negativo) -
          * Il prelievo va a buon fine solo se l'id utente corrisponde
          */
-        this.transactionOp(id, -amount);
+
+        /*
+         * Ogni volta ache viene richiamato 'withdraw':
+         * in 'ClassicBankAccount' viene restituito return true: il prelievo è sempre consentito.
+         * in 'RestrictedBankAccount', viene prima controllato che il saldo sia sufficiente.
+        */
+        if (isWithdrawAllowed(amount)) {
+            this.transactionOp(id, -amount);
+        }
     }
 
     //Metodo esposto di 'BankAccount'
@@ -117,7 +132,7 @@ public abstract class AbstractBankAccount implements BankAccount {
     // 2 METODI ASTRATTI
     // Un metodo abstract non ha mai il corpo { }: dichiara soltanto la firma.
 
-    protected abstract boolean isWithDrawAllowed(double amount); //restituisce true se è possibile prelevare l'importo passato come parametro.
+    protected abstract boolean isWithdrawAllowed(double amount); //restituisce true se è possibile prelevare l'importo passato come parametro.
 
     protected abstract double computeFee(); //restituisce l'importo attuale delle spese di gestione
 }

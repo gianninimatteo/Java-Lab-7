@@ -11,6 +11,8 @@ Creare da zero una classe 'ClassicBankAccount extends AbstractBankAccount', con 
 
 Creare da zero una classe 'RestrictedBankAccount extends AbstractBankAccount', con lo stesso comportamento di 'StrictBankAccount'.
 
-Rispondere alla seguente domanda:
+Infine: nel codice di AbstractBankAccount withdraw() e chargeManagementFees() non utilizzavano ancora isWithDrawAllowed() e computeFee(). Devi collegarli, altrimenti le due sottoclassi non avranno davvero comportamenti differenti.
 
 Secondo te, questo design è migliore o peggiore rispetto a quello precedente? Perché?
+- DESIGN PRECEDENTE: SimpleBankAccount e StrictBankAccount contenevano separatamente gran parte degli stessi metodi e campi.
+- NUOVO DESIGN: AbstractBankAccount raccoglie tutto ciò che hanno in comune, mentre ClassicBankAccount e              RestrictedBankAccount implementano soltanto le differenze.
